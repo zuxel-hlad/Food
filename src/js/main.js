@@ -1,35 +1,35 @@
-"use strict";
+'use strict';
 
-window.addEventListener("DOMContentLoaded", () => {
-  const axios = require("axios").default;
+window.addEventListener('DOMContentLoaded', () => {
+  const axios = require('axios').default;
 
   /* Tabs */
-  const tabs = document.querySelectorAll(".tabheader__item "),
-    tabsContent = document.querySelectorAll(".tabcontent"),
-    tabsParent = document.querySelector(".tabheader__items");
+  const tabs = document.querySelectorAll('.tabheader__item '),
+    tabsContent = document.querySelectorAll('.tabcontent'),
+    tabsParent = document.querySelector('.tabheader__items');
   /* сделать табы и их содержимое не активными  */
   const hideTabContent = () => {
     tabsContent.forEach((item) => {
-      item.classList.add("hide");
-      item.classList.remove("show", "fade");
+      item.classList.add('hide');
+      item.classList.remove('show', 'fade');
     });
-    tabs.forEach((item) => item.classList.remove("tabheader__item_active"));
+    tabs.forEach((item) => item.classList.remove('tabheader__item_active'));
   };
 
   /* сделать табы и их содержимое активными  */
   const showTabContent = (i = 0) => {
-    tabsContent[i].classList.add("show", "fade");
-    tabsContent[i].classList.remove("hide");
-    tabs[i].classList.add("tabheader__item_active");
+    tabsContent[i].classList.add('show', 'fade');
+    tabsContent[i].classList.remove('hide');
+    tabs[i].classList.add('tabheader__item_active');
   };
 
   hideTabContent();
   showTabContent();
   /*
   по нажатию на таб, сделать его активным и показать содержимое */
-  tabsParent.addEventListener("click", (e) => {
+  tabsParent.addEventListener('click', (e) => {
     const target = e.target;
-    if (target && target.classList.contains("tabheader__item")) {
+    if (target && target.classList.contains('tabheader__item')) {
       tabs.forEach((item, i) => {
         if (target == item) {
           hideTabContent();
@@ -40,7 +40,7 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 
   /* Timer */
-  const deadline = "2021-12-01";
+  const deadline = '2021-12-01';
 
   /* оРасчет временных промежутков */
   const getTimeRemaining = (endtime) => {
@@ -79,10 +79,10 @@ window.addEventListener("DOMContentLoaded", () => {
   /* устанавливаем дату и время на страницу */
   const setClock = (selector, endtime) => {
     const timer = document.querySelector(selector),
-      days = timer.querySelector("#days"),
-      hours = timer.querySelector("#hours"),
-      minutes = timer.querySelector("#minutes"),
-      seconds = timer.querySelector("#seconds"),
+      days = timer.querySelector('#days'),
+      hours = timer.querySelector('#hours'),
+      minutes = timer.querySelector('#minutes'),
+      seconds = timer.querySelector('#seconds'),
       timeInterval = setInterval(updateClock, 1000);
 
     updateClock();
@@ -110,19 +110,19 @@ window.addEventListener("DOMContentLoaded", () => {
       }
     }
   };
-  setClock(".timer", deadline);
+  setClock('.timer', deadline);
 
   // Modal window START
 
   /* Получаю со страницы */
-  const modalTrigger = document.querySelectorAll("[data-modal]"),
-    modal = document.querySelector(".modal");
+  const modalTrigger = document.querySelectorAll('[data-modal]'),
+    modal = document.querySelector('.modal');
 
   /* ф-ция открытия модалки */
   const showModal = () => {
-    modal.classList.add("show", "fade");
-    modal.classList.remove("hide");
-    document.body.style.overflow = "hidden";
+    modal.classList.add('show', 'fade');
+    modal.classList.remove('hide');
+    document.body.style.overflow = 'hidden';
   };
   showModal();
   /* ф-ция открытия модалки во время скролла*/
@@ -133,31 +133,31 @@ window.addEventListener("DOMContentLoaded", () => {
       document.documentElement.scrollHeight
     ) {
       showModal();
-      window.removeEventListener("scroll", showModalByScroll);
+      window.removeEventListener('scroll', showModalByScroll);
     }
   };
 
   /* ф-ция закрытия модалки */
   const closeModal = () => {
-    modal.classList.add("hide");
-    modal.classList.remove("show");
-    document.body.style.overflow = "";
+    modal.classList.add('hide');
+    modal.classList.remove('show');
+    document.body.style.overflow = '';
   };
   closeModal();
   /* открытие модалки */
-  modalTrigger.forEach((item) => item.addEventListener("click", showModal));
+  modalTrigger.forEach((item) => item.addEventListener('click', showModal));
 
   /*   закрыть модалку если кликаем мимо формы */
-  modal.addEventListener("click", (e) => {
+  modal.addEventListener('click', (e) => {
     const target = e.target;
-    if (target === modal || target.getAttribute("data-close") === "") {
+    if (target === modal || target.getAttribute('data-close') === '') {
       closeModal();
     }
   });
 
   /*   закрыть модалку если нажимаем escape */
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && modal.classList.contains("show")) {
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('show')) {
       closeModal();
     }
   });
@@ -168,7 +168,7 @@ window.addEventListener("DOMContentLoaded", () => {
   }, 50000);
 
   /* отследить скролл для показа модалки в конце страницы */
-  window.addEventListener("scroll", showModalByScroll);
+  window.addEventListener('scroll', showModalByScroll);
 
   // Modal window END
 
@@ -190,9 +190,9 @@ window.addEventListener("DOMContentLoaded", () => {
       this.price = this.price * this.transfer;
     }
     render() {
-      const element = document.createElement("div");
+      const element = document.createElement('div');
       if (this.classes.length === 0) {
-        this.element = "menu__item";
+        this.element = 'menu__item';
         element.classList.add(this.element);
       } else {
         this.classes.forEach((className) => element.classList.add(className));
@@ -211,7 +211,7 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 
   axios
-    .get("http://localhost:3000/menu")
+    .get('http://localhost:3000/menu')
 
     .then((data) => {
       data.data.forEach(({ img, altimg, title, descr, price }) => {
@@ -221,20 +221,20 @@ window.addEventListener("DOMContentLoaded", () => {
           title,
           descr,
           price,
-          ".menu .container"
+          '.menu .container'
         ).render();
       });
     });
 
   // Forms
 
-  const forms = document.querySelectorAll("form");
+  const forms = document.querySelectorAll('form');
 
   /* хранилище сообщений на случай ошибки и успеха */
   const message = {
-    loading: "img/form/spinner.svg",
-    success: "Спасибо! Скоро мы с вами свяжемся",
-    failure: "Что-то пошло не так...",
+    loading: 'img/form/spinner.svg',
+    success: 'Спасибо! Скоро мы с вами свяжемся',
+    failure: 'Что-то пошло не так...',
   };
 
   /* Навешиваем обработчик каждой форме */
@@ -245,9 +245,9 @@ window.addEventListener("DOMContentLoaded", () => {
   /* ф-ция постинга данных */
   const postData = async (url, data) => {
     const result = await fetch(url, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-type": "application/json",
+        'Content-type': 'application/json',
       },
       body: data,
     });
@@ -256,13 +256,13 @@ window.addEventListener("DOMContentLoaded", () => {
 
   /* ф-ция привязки отправки данных из формы */
   function bindPostData(form) {
-    form.addEventListener("submit", (e) => {
+    form.addEventListener('submit', (e) => {
       e.preventDefault(); /* cancel standart function button */
 
-      let statusMessage = document.createElement("img");
+      let statusMessage = document.createElement('img');
       statusMessage.src = message.loading;
-      statusMessage.classList.add("order__status-message");
-      form.insertAdjacentElement("beforeend", statusMessage);
+      statusMessage.classList.add('order__status-message');
+      form.insertAdjacentElement('beforeend', statusMessage);
 
       /* Собираем данные из формы */
       const formData = new FormData(form);
@@ -270,7 +270,7 @@ window.addEventListener("DOMContentLoaded", () => {
       const json = JSON.stringify(Object.fromEntries(formData.entries()));
 
       /* Отправляем на сервер */
-      postData("http://localhost:3000/requests", json)
+      postData('http://localhost:3000/requests', json)
         .then((data) => {
           console.log(data);
           showThanksModal(message.success);
@@ -288,15 +288,15 @@ window.addEventListener("DOMContentLoaded", () => {
   /* ф-ция благодарности за отправку данных из формы */
   function showThanksModal(message) {
     /* получение модального диалога */
-    const prevModalDialog = document.querySelector(".modal__dialog");
+    const prevModalDialog = document.querySelector('.modal__dialog');
 
     /* прячем до вызова показа модалки */
-    prevModalDialog.classList.add("hide");
+    prevModalDialog.classList.add('hide');
     showModal();
 
     /* наполняем контентом окно */
-    const thanksModal = document.createElement("div");
-    thanksModal.classList.add("modal__dialog");
+    const thanksModal = document.createElement('div');
+    thanksModal.classList.add('modal__dialog');
     thanksModal.innerHTML = `
     <div class="modal__content">
     <div class="modal__close" data-close>×</div>
@@ -305,30 +305,30 @@ window.addEventListener("DOMContentLoaded", () => {
     `;
 
     /* добавляем контент в модальное окно после отправки */
-    document.querySelector(".modal").append(thanksModal);
+    document.querySelector('.modal').append(thanksModal);
 
     /* закрытие благодарственного модального окна вместе с содержимым и контентом */
     setTimeout(() => {
       thanksModal.remove();
-      prevModalDialog.classList.add("show");
-      prevModalDialog.classList.remove("hide");
+      prevModalDialog.classList.add('show');
+      prevModalDialog.classList.remove('hide');
       closeModal();
     }, 4000);
   }
 
   /* Slider */
 
-  const slider = document.querySelector(".offer__slider"),
-    sliderWrapper = document.querySelector(".offer__slider-wrapper"),
-    sliderInner = document.querySelector(".offer__slider-inner"),
-    sliderItems = document.querySelectorAll(".offer__slide"),
+  const slider = document.querySelector('.offer__slider'),
+    sliderWrapper = document.querySelector('.offer__slider-wrapper'),
+    sliderInner = document.querySelector('.offer__slider-inner'),
+    sliderItems = document.querySelectorAll('.offer__slide'),
     // sliderCounter = document.querySelector(".offer__slider-counter"), /* old version slider */
-    sliderCurrent = document.querySelector("#current"),
-    sliderTotal = document.querySelector("#total"),
-    sliderPrevBtn = document.querySelector(".offer__slider-prev"),
-    sliderNextBtn = document.querySelector(".offer__slider-next"),
-    width = window.getComputedStyle(sliderWrapper)
-      .width; /* slider wrapper size */
+    sliderCurrent = document.querySelector('#current'),
+    sliderTotal = document.querySelector('#total'),
+    sliderPrevBtn = document.querySelector('.offer__slider-prev'),
+    sliderNextBtn = document.querySelector('.offer__slider-next'),
+    width =
+      window.getComputedStyle(sliderWrapper).width; /* slider wrapper size */
   // parsedWidth = parseInt(width); /* width in number type */
 
   /* slider v 2.0 */
@@ -347,27 +347,27 @@ window.addEventListener("DOMContentLoaded", () => {
     sliderCurrent.textContent = slideIndex;
   }
 
-  sliderInner.style.width = 100 * sliderItems.length + "%";
-  sliderInner.style.display = "flex";
-  sliderInner.style.transition = "0.8s all";
+  sliderInner.style.width = 100 * sliderItems.length + '%';
+  sliderInner.style.display = 'flex';
+  sliderInner.style.transition = '0.8s all';
 
-  sliderWrapper.style.overflow = "hidden";
+  sliderWrapper.style.overflow = 'hidden';
 
   sliderItems.forEach((slide) => (slide.style.width = width));
 
-  slider.style.position = "relative";
+  slider.style.position = 'relative';
 
   /* Обертка для дотсов */
-  const sliderDots = document.createElement("ol"),
+  const sliderDots = document.createElement('ol'),
     dots = [];
-  sliderDots.classList.add("carousel-indicators");
+  sliderDots.classList.add('carousel-indicators');
   slider.append(sliderDots);
 
   for (let i = 0; i < sliderItems.length; i++) {
-    const dot = document.createElement("li");
-    dot.classList.add("dot");
+    const dot = document.createElement('li');
+    dot.classList.add('dot');
     /* каждой точке устанавливаем аттрибут и говорим к какому слайду относится. И устанавливаем нумерацию начиная с 1 */
-    dot.setAttribute("data-slide-to", i + 1);
+    dot.setAttribute('data-slide-to', i + 1);
     if (i === 0) {
       dot.style.opacity = 1;
     }
@@ -376,12 +376,12 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 
   const addDotsOpacity = () => {
-    dots.forEach((dot) => (dot.style.opacity = ".5"));
+    dots.forEach((dot) => (dot.style.opacity = '.5'));
     dots[slideIndex - 1].style.opacity = 1;
   };
 
   const deleteNotDigets = (str) => {
-    return +str.replace(/\D/g, "");
+    return +str.replace(/\D/g, '');
   };
 
   const checkSliderCurrent = () => {
@@ -392,7 +392,7 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  sliderNextBtn.addEventListener("click", () => {
+  sliderNextBtn.addEventListener('click', () => {
     /* если последний слайд, то возвращаемся в начало */
     if (offset === deleteNotDigets(width) * (sliderItems.length - 1)) {
       offset = 0;
@@ -411,7 +411,7 @@ window.addEventListener("DOMContentLoaded", () => {
     addDotsOpacity();
   });
 
-  sliderPrevBtn.addEventListener("click", () => {
+  sliderPrevBtn.addEventListener('click', () => {
     /* если первый слайд */
     if (offset === 0) {
       /* возвращаемся в конец */
@@ -433,9 +433,9 @@ window.addEventListener("DOMContentLoaded", () => {
   /* ручное переключение слайдов по клику на дотс */
   dots.forEach((dot) => {
     /* вешаем обработчик на каждую отдельную точку */
-    dot.addEventListener("click", (e) => {
+    dot.addEventListener('click', (e) => {
       const target = e.target;
-      const slideTo = target.getAttribute("data-slide-to");
+      const slideTo = target.getAttribute('data-slide-to');
       /* записываем в слайд-индекс индекс точки на которую нажали */
       slideIndex = slideTo;
       offset = deleteNotDigets(width) * (slideTo - 1);
@@ -494,22 +494,22 @@ window.addEventListener("DOMContentLoaded", () => {
 
   // Calculator
 
-  const result = document.querySelector(".calculating__result span");
+  const result = document.querySelector('.calculating__result span');
 
   let sex, height, weight, age, ratio;
 
-  if (localStorage.getItem("sex")) {
-    sex = localStorage.getItem("sex");
+  if (localStorage.getItem('sex')) {
+    sex = localStorage.getItem('sex');
   } else {
-    sex = "female";
-    localStorage.setItem("sex", "female");
+    sex = 'female';
+    localStorage.setItem('sex', 'female');
   }
 
-  if (localStorage.getItem("ratio")) {
-    ratio = localStorage.getItem("ratio");
+  if (localStorage.getItem('ratio')) {
+    ratio = localStorage.getItem('ratio');
   } else {
     ratio = 1.375;
-    localStorage.setItem("ratio", 1.375);
+    localStorage.setItem('ratio', 1.375);
   }
 
   const initLocalSettings = (selector, activeClass) => {
@@ -518,27 +518,27 @@ window.addEventListener("DOMContentLoaded", () => {
     elements.forEach((el) => {
       el.classList.remove(activeClass);
 
-      if (el.getAttribute("id") === localStorage.getItem("sex")) {
+      if (el.getAttribute('id') === localStorage.getItem('sex')) {
         el.classList.add(activeClass);
       }
-      if (el.getAttribute("data-ratio") === localStorage.getItem("ratio")) {
+      if (el.getAttribute('data-ratio') === localStorage.getItem('ratio')) {
         el.classList.add(activeClass);
       }
     });
   };
-  initLocalSettings("#gender div", "calculating__choose-item_active");
+  initLocalSettings('#gender div', 'calculating__choose-item_active');
   initLocalSettings(
-    ".calculating__choose_big div",
-    "calculating__choose-item_active"
+    '.calculating__choose_big div',
+    'calculating__choose-item_active'
   );
 
   const calcTotal = () => {
     if (!sex || !height || !weight || !age || !ratio) {
-      result.textContent = "0";
+      result.textContent = '0';
       return;
     }
 
-    if (sex === "female") {
+    if (sex === 'female') {
       result.textContent = Math.round(
         (447.6 + 9.2 * weight + 3.1 * height - 4.3 * age) * ratio
       );
@@ -554,15 +554,15 @@ window.addEventListener("DOMContentLoaded", () => {
     const elements = document.querySelectorAll(selector);
 
     elements.forEach((elem) =>
-      elem.addEventListener("click", (e) => {
+      elem.addEventListener('click', (e) => {
         const target = e.target;
 
-        if (target.getAttribute("data-ratio")) {
-          ratio = +target.getAttribute("data-ratio");
-          localStorage.setItem("ratio", +target.getAttribute("data-ratio"));
+        if (target.getAttribute('data-ratio')) {
+          ratio = +target.getAttribute('data-ratio');
+          localStorage.setItem('ratio', +target.getAttribute('data-ratio'));
         } else {
-          sex = target.getAttribute("id");
-          localStorage.setItem("sex", target.getAttribute("id"));
+          sex = target.getAttribute('id');
+          localStorage.setItem('sex', target.getAttribute('id'));
         }
 
         elements.forEach((el) => el.classList.remove(activeClass));
@@ -571,28 +571,28 @@ window.addEventListener("DOMContentLoaded", () => {
       })
     );
   };
-  getStaticInformation("#gender div", "calculating__choose-item_active");
+  getStaticInformation('#gender div', 'calculating__choose-item_active');
   getStaticInformation(
-    ".calculating__choose_big div",
-    "calculating__choose-item_active"
+    '.calculating__choose_big div',
+    'calculating__choose-item_active'
   );
 
   const getDynamicInformation = (selector) => {
     const input = document.querySelector(selector);
-    input.addEventListener("input", (e) => {
+    input.addEventListener('input', (e) => {
       const target = e.target;
       if (input.value.match(/\D/g)) {
-        input.style.boxShadow = "0px 4px 15px rgb(255 0 0)";
+        input.style.boxShadow = '0px 4px 15px rgb(255 0 0)';
       } else {
-        input.style.boxShadow = "";
+        input.style.boxShadow = '';
       }
-      if (target.getAttribute("id") === "height") {
+      if (target.getAttribute('id') === 'height') {
         height = +input.value;
       }
-      if (target.getAttribute("id") === "weight") {
+      if (target.getAttribute('id') === 'weight') {
         weight = +input.value;
       }
-      if (target.getAttribute("id") === "age") {
+      if (target.getAttribute('id') === 'age') {
         age = +input.value;
       }
       // switch (input.getAttribute("id")) {
@@ -609,24 +609,23 @@ window.addEventListener("DOMContentLoaded", () => {
       calcTotal();
     });
   };
-  getDynamicInformation("#height");
-  getDynamicInformation("#weight");
-  getDynamicInformation("#age");
+  getDynamicInformation('#height');
+  getDynamicInformation('#weight');
+  getDynamicInformation('#age');
 
   /* Slow scroll */
 
-  const btnUp = document.querySelector(".up");
-  window.addEventListener("scroll", () => {
+  const btnUp = document.querySelector('.up');
+  window.addEventListener('scroll', () => {
     if (pageYOffset > 800) {
-      btnUp.classList.remove("hide");
-      btnUp.classList.add("show");
+      btnUp.classList.remove('hide');
+      btnUp.classList.add('show');
     } else {
-      btnUp.classList.remove("show");
-      btnUp.classList.add("hide");
+      btnUp.classList.remove('show');
+      btnUp.classList.add('hide');
     }
   });
 
-  
   /* end DOM script */
 });
 
@@ -634,9 +633,9 @@ window.addEventListener("DOMContentLoaded", () => {
 $(document).ready(function () {
   $(function () {
     $("a[href='#header']").click(function () {
-      var _href = $(this).attr("href");
-      $("html, body").animate(
-        { scrollTop: $(_href).offset().top + "px" },
+      var _href = $(this).attr('href');
+      $('html, body').animate(
+        { scrollTop: $(_href).offset().top + 'px' },
         { duration: 900 }
       );
       return false;

@@ -355,8 +355,7 @@ a {
   padding: 40px 0 50px 0; }
   .menu .container {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start; }
+    justify-content: space-between; }
   .menu .title {
     text-align: center; }
   .menu__field {
@@ -365,9 +364,11 @@ a {
     width: 100%;
     background: rgba(249, 254, 126, 0.25); }
   .menu__item {
+    display: flex;
+    flex-direction: column;
     width: 320px;
-    min-height: 450px;
-    background: #FFFFFF;
+    min-height: 480px;
+    background: #ffffff;
     box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.25);
     font-size: 16px;
     font-weight: 300; }
@@ -383,29 +384,23 @@ a {
     .menu__item-descr {
       margin-top: 20px;
       padding: 0 20px;
-      text-align: justify; }
-    .menu__item-divider {
-      width: 100%;
-      height: 1px;
-      background-color: rgba(0, 0, 0, 0.25);
-      margin-top: 40px; }
+      text-align: justify;
+      overflow: hidden auto; }
     .menu__item-price {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 10px 20px; }
+      padding: 10px 20px;
+      margin: auto 0 0 0;
+      border-top: 1px solid rgba(0, 0, 0, 0.25); }
       .menu__item-price span {
         font-size: 24px;
         font-weight: bold; }
 
 .order {
   padding-bottom: 80px; }
-  .order .title {
-    margin: 15px 0 0 0;
-    text-align: center; }
   .order__form {
     margin-top: 70px;
-    padding: 0 100px;
     display: flex;
     justify-content: space-between;
     align-items: center; }
@@ -413,10 +408,13 @@ a {
       transform: scale(1.5);
       display: block;
       margin: 0 20px; }
+    .order__form-title.banner {
+      font-size: 20px;
+      text-align: left; }
   .order__input {
     width: 280px;
     height: 50px;
-    background: #FFFFFF;
+    background: #ffffff;
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
     border: none;
     font-size: 18px;
